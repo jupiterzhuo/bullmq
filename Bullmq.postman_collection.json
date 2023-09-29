@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "6eda5b9a-616e-4fa9-b1db-164355df09ed",
+		"name": "Bullmq",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18257672"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"console.log(response)\r",
+									"pm.environment.set(\"jwt_token\", response.jwt)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"developer@enablr.id\",\r\n    \"password\": \"Enablr123!@#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login/local",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login",
+								"local"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"developer@enablr.id\",\r\n    \"password\": \"Enablr123!@#\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/login/local",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"login",
+										"local"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "154"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9a-FEs+BLm9enjcTQA81AnM9mLgVW0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Jul 2022 07:41:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZGV2ZWxvcGVyQGVuYWJsci5pZCIsImlhdCI6MTY1ODEzMDA2OX0.oKEYWZ09rE37H2v93O8g6DdonQrAXN_hqj9Nu62hJUo\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"queue_name\": \"Kodoo Shop:216\",\r\n    \"job_name\": \"create_bulk:216\",\r\n    \"is_repeatable\": true,\r\n    \"data\": {\r\n        \"method\": \"POST\",\r\n        \"url\": \"http://13.214.209.136:1338/webhooks/create_bulk\",\r\n        \"data\": {\r\n            \"sellerUser\": \"koodo\",\r\n            \"userid\": 77,\r\n            \"research_id\": 215\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/queue",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"queue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obliterate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"queue_name\": \"test repeat 10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/queue",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"queue"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bulk job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"queue_name\": \"bulk_castrolofficial:204\",\r\n    \"data\": [\r\n        {\r\n            \"name\": \"Riset Oli Bekas:2367948738\",\r\n            \"data\": {\r\n                \"method\": \"POST\",\r\n                \"url\": \"http://13.214.209.136:1338/webhooks/special_research\",\r\n                \"data\": {\r\n                    \"sellerUser\": \"castrolofficial\",\r\n                    \"shopId\": 12184678,\r\n                    \"productName\": \"Oli Mesin Mobil Castrol MAGNATEC 5W-40 Kemasan 1L Free Car Parfum\",\r\n                    \"productId\": 2367948738,\r\n                    \"productKey\": \"oli-mesin-mobil-castrol-magnatec-5w-40-kemasan-1l-free-car-parfum\",\r\n                    \"userid\": 77,\r\n                    \"queue_name\": \"Oli Mesin Mobil Castrol MAGNATEC 5W-40 Kemasan 1L Free Car Parfum:204\",\r\n                    \"job_name\": \"Riset Oli Bekas:2367948738\",\r\n                    \"research_id\": 204\r\n                }\r\n            }\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/queue/bulk",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"queue",
+						"bulk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Re Insert",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/all-keys",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"all-keys"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Remove Old",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/all-keys",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"all-keys"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:3001",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "jwt_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiZGV2ZWxvcGVyQGVuYWJsci5pZCIsImlhdCI6MTY1ODk4MTM0MH0.3FaMPiR4qnrjMaRh9mrcYycyNnNJ3L4c6AqzTPnj1eo",
+			"type": "string"
+		},
+		{
+			"key": "baseURL",
+			"value": "http://18.141.106.114:3002",
+			"type": "string"
+		}
+	]
+}

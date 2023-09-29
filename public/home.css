@@ -1,0 +1,13 @@
+body {
+    background: #222D32;
+}
+
+p, h2 {
+    color: white;
+}
+
+.content {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
